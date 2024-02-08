@@ -1,0 +1,10 @@
+.contentWrapper {
+    display: flex;
+    // flex-direction: column;
+  }
+  .spacer {
+    flex: 1; /* Fill the remaining space */
+  }
+  .addClientLink {
+    margin-top: auto; /* Pushes the button to the end */
+  }

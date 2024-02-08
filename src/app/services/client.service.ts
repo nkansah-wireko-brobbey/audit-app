@@ -24,5 +24,9 @@ export class ClientService {
   public getClientById(id: string): Observable<any> {
     return this.http.get(this.apiEndpoint+'/'+id);
   }
+
+  public getContractsByClientId(id: string): Observable<any> {
+    return this.http.get(this.apiEndpoint+'/contracts/'+id);
+  }
   
 }

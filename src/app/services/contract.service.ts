@@ -26,4 +26,7 @@ export class ContractService {
   public getAllContracts(): Observable<any> {
     return this.http.get(this.apiEndpoint);
   }
+  public getContractById(id: string): Observable<any> {
+    return this.http.get(this.apiEndpoint+'/'+id);
+  }
 }

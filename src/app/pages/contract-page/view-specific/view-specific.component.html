@@ -1,1 +1,18 @@
-<p>view-specific works!</p>
+<mat-card class="cardWithShadow" *ngIf="contractDetails">
+ 
+    
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{ contractDetails.clientName }}</mat-card-title>
+        <mat-card-subtitle>Initiation {{ contractDetails.initiationMode }}</mat-card-subtitle>
+        <img mat-card-sm-image [src]="contractDetails.imgSrc" >
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="details">
+            <p>Start Date: {{ contractDetails.startDate }} End Date: {{ contractDetails.endDate }}</p>
+            <p>Amount Paid: $ {{ contractDetails.amountPaid.amount }} </p>
+            <p>Engagement Frequency: {{ contractDetails.annualEngagementFrequency }}</p>
+          </div>
+    </mat-card-content>
+</mat-card>

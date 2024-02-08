@@ -14,8 +14,8 @@ export const ContractRoutes: Routes = [
           component: ContractPageComponent
         },
         {
-            path: 'contract/:clientId',
-            component: ViewComponent
+            path: 'contract/:contractId',
+            component: ViewSpecificComponent
         },
         {
             path: 'contract/:clientId/:contractId',

@@ -5,6 +5,7 @@ import { ClientService } from 'src/app/services/client.service';
 import { images } from 'src/app/core/constants/images';
 import { UtitlityService } from 'src/app/utils/Utitlity.service';
 import { T } from '@angular/cdk/keycodes';
+import { ContractResponse } from 'src/app/core/interfaces/contract.interface';
 
 @Component({
   selector: 'app-view-client-details',
@@ -12,6 +13,10 @@ import { T } from '@angular/cdk/keycodes';
   styleUrls: ['./view-client-details.component.scss']
 })
 export class ViewClientDetailsComponent implements OnInit {
+
+  contractCards: ContractResponse[];
+
+  baseRoute = '/contract/';
 
 
   clientId:any;
@@ -34,6 +39,7 @@ export class ViewClientDetailsComponent implements OnInit {
     const id = params.get('clientId');
     console.log('Route param (using paramMap observable):', id);
     this.getClientDetails();
+    this.getClientContracts();
   });
 
   }
@@ -71,6 +77,21 @@ formatClientData(client: ClientCreateResponse){
 
 
   return clientData;
+
+}
+
+getClientContracts(){
+  this.clientService.getContractsByClientId(this.clientId).subscribe((res: any) => {
+    console.log(res);
+    this.contractCards = res.body;
+    this.addImages();
+  });
+}
+
+addImages(){
+  this.contractCards.forEach(contract => {
+    contract.imgSrc = this.defaultImage[this.utilityService.getRandomNumber()][`path`];
+  });
 
 }
 

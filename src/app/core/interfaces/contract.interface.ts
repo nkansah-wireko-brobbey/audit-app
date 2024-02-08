@@ -7,15 +7,46 @@ export interface Contract{
 }
 
 export interface ContractCreateRequest{
+
     clientId: string;
-    startDate: Date;
-    endDate: Date;
+    startDate: Date | string;
+    endDate: Date | string;
     initiationMode: string;
-    amount: number;
+    amountPaid: number;
     description: string;
     annualEngagementFrequency: any;
-    documentRequests: {
+    documentRequests?: {
         name: string;
-        file: File | null;
+        file: File | null | any | ArrayBuffer;
     }[];
+    file?: File | null | any | ArrayBuffer;
+    fileName?: string;
 }
+export interface ContractResponse {
+    amountPaid: {
+      amount: number;
+      currency: {
+        alphabeticCode: string;
+        createdBy: string;
+        createdOn: string;
+        id: number;
+        lastModifiedBy: string;
+        lastModifiedOn: string;
+        minorUnit: number;
+        name: string;
+        numericCode: string;
+        symbol: string | null;
+        version: number;
+      };
+    };
+    annualEngagementFrequency: number;
+    documents: any; // Type as per your document structure
+    endDate: string;
+    initiationMode: string;
+    previousContractId: any; // Type as per your previous contract ID structure
+    startDate: string;
+    imgSrc?: string;
+    contractId: number | string;
+    clientName: string;
+  }
+  

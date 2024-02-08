@@ -8,6 +8,7 @@ import { ContractCreateRequest } from 'src/app/core/interfaces/contract.interfac
 import { ContractService } from 'src/app/services/contract.service';
 import { catchError, finalize, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-new',
@@ -15,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./add-new.component.scss']
 })
 export class AddNewContractComponent implements OnInit{
+  minDate = new Date();
 
   submitButtonStatus: boolean = true;
 
@@ -58,11 +60,15 @@ export class AddNewContractComponent implements OnInit{
     private configService: ConfigService,
     private clientService: ClientService,
     private contractService: ContractService,
+    private router: Router,
     @Inject(MatSnackBar) private _snackBar: MatSnackBar
   ) {
 
     this.contractFrom = this.formBuilder.group({
-      startDate: ['', Validators.required],
+      startDate: ['', {
+        validators: [Validators.required, Validators.min(new Date().getDate())],
+        updateOn: 'blur' // Trigger validation on blur (when the field loses focus)
+      }],
       endDate: ['', Validators.required],
       initiationMode: ['', Validators.required],
       amount: ['', {
@@ -99,6 +105,9 @@ export class AddNewContractComponent implements OnInit{
         console.log(key, formDataFormated[key]);
       });
 
+      if (this.selectedFile)
+        formData.append('file', this.selectedFile);
+
       console.log(formData);
 
     this.contractService.createContract(formData).pipe(
@@ -114,12 +123,11 @@ export class AddNewContractComponent implements OnInit{
       })
     ).subscribe((res: any) => {
       // console.log(res);
-      if (res.status === 201) {
-        console.log('Contract created successfully');
-      }else{
-        console.log('Contract creation failed');
-     
-      }
+      this._snackBar.open('Contract created successfully', 'Close', {
+        duration: 4000,
+      });
+
+      this.router.navigate(['/contract']);
     });
 
   } else {
@@ -167,23 +175,52 @@ export class AddNewContractComponent implements OnInit{
 
   }
 
-  formatContractData(request: any){
-    const contractData: ContractCreateRequest = {
-      clientId: request.clientId,
-      startDate: request.startDate,
-      endDate: request.endDate,
-      initiationMode: request.initiationMode,
-      amount: request.amount,
-      description: request.description,
-      annualEngagementFrequency: request.frequency,
-      documentRequests: [{
-        name: request.description,
-        file: this.selectedFile
-      }]
-    }
-   
+  formatContractData(request: any) {
+    let tempFile = new FormData();
+    if (this.selectedFile)
+    tempFile.set('file', this.selectedFile);
+
+    const documentRequests = [{
+      name: request.description,
+      file: tempFile // Initially set to null
+    }];
+
+    // documentRequests[0].file = this.selectedFile ?  new FormData().set('file', this.selectedFile)  : null;
+
+      const contractData: ContractCreateRequest = {
+        clientId: request.clientId,
+        startDate: this.formatDate(request.startDate),
+        endDate: this.formatDate(request.endDate),
+        initiationMode: request.initiationMode,
+        amountPaid: request.amount,
+        description: request.description,
+        annualEngagementFrequency: request.frequency,
+        documentRequests: documentRequests,
+        fileName: request.description
+      };
+
+      console.log("File");
+    console.log(this.selectedFile);
+    console.log(documentRequests);
+    console.log(contractData.documentRequests?.[0]?.file);
+    
+
     return contractData;
   }
 
+  private formatDate(dateTimeString:any){
+    const dateTime = new Date(dateTimeString);
+
+// Extract the date components (year, month, day)
+const year = dateTime.getFullYear();
+const month = dateTime.getMonth() + 1; // Note: getMonth() returns a zero-based index, so add 1 to get the actual month
+const day = dateTime.getDate();
+
+// Format the date
+const formattedDate = `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
+
+
+return formattedDate;
+ }
 
 }

@@ -33,4 +33,14 @@
   .business-category {
     font-size: 14px; /* Adjust font size as needed */
   }
+  .contentWrapper {
+    display: flex;
+    // flex-direction: column;
+  }
+  .spacer {
+    flex: 1; /* Fill the remaining space */
+  }
+  .addClientLink {
+    margin-top: auto; /* Pushes the button to the end */
+  }
   
