@@ -41,7 +41,7 @@ export class ViewClientDetailsComponent implements OnInit {
   private getClientDetails(): void {
     console.log('Get client details');
     try {
-      this.clientService.gerClientById(this.clientId).subscribe((response: any) => {
+      this.clientService.getClientById(this.clientId).subscribe((response: any) => {
 
         this.clientDetails = this.formatClientData(response.body);
         console.log(this.clientDetails);

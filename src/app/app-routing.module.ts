@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
+import { EngagementModule } from './pages/engagement-page/engagement.module';
+
 
 const routes: Routes = [
   {
@@ -64,6 +66,13 @@ const routes: Routes = [
             (m) => m.ContractPageModule
           ),
       },
+            {
+              path: '',
+              loadChildren: () =>
+                import('./pages/engagement-page/engagement.module').then(
+                  (m) => m.EngagementModule
+                ),
+            }
 
     ],
   },

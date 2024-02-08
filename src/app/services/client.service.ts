@@ -21,7 +21,8 @@ export class ClientService {
     return this.http.post(this.apiEndpoint, data);
   }
 
-  public gerClientById(id: string): Observable<any> {
+  public getClientById(id: string): Observable<any> {
     return this.http.get(this.apiEndpoint+'/'+id);
   }
+  
 }

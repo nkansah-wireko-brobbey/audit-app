@@ -19,4 +19,11 @@ export class ContractService {
   public createContract(data: FormData): Observable<any> {
     return this.http.post(this.apiEndpoint, data);
   }
+  public getAllContractsClientById(id: string): Observable<any> {
+    return this.http.get(this.apiEndpoint+'/'+id);
+  }
+
+  public getAllContracts(): Observable<any> {
+    return this.http.get(this.apiEndpoint);
+  }
 }

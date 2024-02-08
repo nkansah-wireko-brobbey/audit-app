@@ -1,0 +1,18 @@
+<mat-card class="cardWithShadow" *ngIf="engagmentDetails">
+       
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{ engagmentDetails.businessName }}</mat-card-title>
+            <mat-card-subtitle>Business Category: {{ engagmentDetails.businessCategoryName }}</mat-card-subtitle>
+            <img mat-card-sm-image [src]="engagmentDetails.imgSrc" >
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="details">
+                <p>Email: {{ engagmentDetails.email }}</p>
+                <p>Phone Number: +{{ engagmentDetails.phoneNumber.countryCode }} {{ engagmentDetails.phoneNumber.number }}</p>
+                <p>Staff Size: {{ engagmentDetails.staffSize }}</p>
+              </div>
+        </mat-card-content>
+  </mat-card>
+  
