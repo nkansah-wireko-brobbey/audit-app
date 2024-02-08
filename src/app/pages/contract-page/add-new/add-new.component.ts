@@ -181,11 +181,7 @@ export class AddNewContractComponent implements OnInit{
         file: this.selectedFile
       }]
     }
-    console.log('request data');
-    console.log(request);
-    console.log('Contract data');
-    console.log(contractData);
-
+   
     return contractData;
   }
 
