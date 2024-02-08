@@ -1,18 +1,98 @@
-<mat-card class="cardWithShadow" *ngIf="engagmentDetails">
+<mat-card class="cardWithShadow" *ngIf="engagementTeamDetails">
+  <mat-card-content class="contentWrapper">
+    <mat-card-title>Lead Auditor: {{engagementTeamDetails.leadAuditor.firstName}} {{engagementTeamDetails.leadAuditor.lastName}}</mat-card-title>
+    <div class="spacer"></div> <!-- Add spacer to push button to the end -->
+    
+  </mat-card-content>
+</mat-card>
+
+<div class="row">
+  <div class="col-md-6">
+    <mat-card class="cardWithShadow" *ngIf="engagmentDetails">
        
-        <mat-card-header>
-          <mat-card-title-group>
-            <mat-card-title>Engagement Details</mat-card-title>
-            <mat-card-title>{{ engagmentDetails.name }}</mat-card-title>
-            <mat-card-subtitle>Engagment Start Date: {{ engagmentDetails.proposedStartDate }}</mat-card-subtitle>
-            <!-- <img mat-card-sm-image [src]="engagmentDetails.imgSrc" > -->
-          </mat-card-title-group>
-        </mat-card-header>
-        <mat-card-content>
-            <div class="details">
-                <p>Scope: {{ engagmentDetails.scope }}</p>
-                <p>Status: +{{ engagmentDetails.status }}</p>
-              </div>
-        </mat-card-content>
-  </mat-card>
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>Engagement Details</mat-card-title>
+          <mat-card-title>{{ engagmentDetails.name }}</mat-card-title>
+          <mat-card-subtitle>Engagment Start Date: {{ engagmentDetails.proposedStartDate }}</mat-card-subtitle>
+          <!-- <img mat-card-sm-image [src]="engagmentDetails.imgSrc" > -->
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+          <div class="details">
+              <p>Scope: {{ engagmentDetails.scope }}</p>
+              <p>Status: +{{ engagmentDetails.status }}</p>
+            </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-md-6" *ngIf="engagmentDetails">
+    <mat-card class="cardWithShadow" >
+       
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>Junior Auditors</mat-card-title>
+          <mat-card-subtitle></mat-card-subtitle>
+          <!-- <img mat-card-sm-image [src]="engagmentDetails.imgSrc" > -->
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+          <div class="details" *ngFor="let junior of engagementTeamDetails.juniorAuditors; let i = index">
+              <p>Auditor {{i+1}}: {{ junior.firstName }} {{ junior.lastName }}</p>
+             
+          </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+ 
+  
+</div>
+<div class="row">
+  <div class="col-md-6" *ngIf="engagmentDetails">
+    <mat-card class="cardWithShadow" >
+       
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>Assistants</mat-card-title>
+          <mat-card-subtitle></mat-card-subtitle>
+          <!-- <img mat-card-sm-image [src]="engagmentDetails.imgSrc" > -->
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+          <div class="details" *ngFor="let assistant of engagementTeamDetails.assistants; let i = index">
+              <p>
+                Assistant {{i+1}}: {{ assistant.firstName }} {{ assistant.lastName }}</p>
+             
+          </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-md-6" *ngIf="engagementBudget">
+    <mat-card class="cardWithShadow" >
+       
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>Budget for Engagement</mat-card-title>
+          <mat-card-subtitle></mat-card-subtitle>
+          <!-- <img mat-card-sm-image [src]="engagmentDetails.imgSrc" > -->
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+          <div class="details">
+              <p>
+                Insurance Cost: {{ engagementBudget.insurance }}
+              </p>
+              <p>
+                Sofware License: {{ engagementBudget.softwareLicence }}
+              </p>
+              <p>
+                Travel & accomodation: {{ engagementBudget.travelAndAccommodation }}
+              </p>
+             
+          </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
   

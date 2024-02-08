@@ -24,4 +24,12 @@ export class EngagementService {
   public getEngagementByContractId(id: string): Observable<any> {
     return this.http.get(this.apiEndpoint+'/contract/'+id);
   }
+
+  public getEngagementTeamByEngagementId(id: string): Observable<any> {
+    return this.http.get(this.apiEndpoint+'/'+id+'/team');
+  }
+
+  public getEngagementBudgetByEngagementId(id: string): Observable<any> {
+    return this.http.get(this.apiEndpoint+'/'+id+'/budget');
+  }
 }

@@ -42,6 +42,15 @@ export interface engagmentDetails {
     lastName: string;
     email: string;
   }
+
+  export interface EngagementBudgetResponse {
+   
+      id: number;
+      travelAndAccommodation: number;
+      insurance: number;
+      softwareLicence: number;
+    
+  }
   
   
   
