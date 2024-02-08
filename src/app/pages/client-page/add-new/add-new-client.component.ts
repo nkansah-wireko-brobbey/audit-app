@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { clientCreateRequest } from '../../../core/interfaces/client.interface';
 import { countries } from 'src/app/core/constants/countries';
@@ -6,6 +6,7 @@ import { Countries } from 'src/app/core/interfaces/country.interface';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { ClientService } from 'src/app/services/client.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'add-new-client-page',
@@ -25,7 +26,8 @@ export class AddNewClientComponent implements OnInit {
     private formBuilder: FormBuilder,
     private configService: ConfigService,
     private clientService: ClientService,
-    private router: Router
+    private router: Router,
+    @Inject(MatSnackBar) private snackBar: MatSnackBar
     ) {
   }
 
@@ -62,6 +64,9 @@ export class AddNewClientComponent implements OnInit {
         // You can perform further actions like sending data to server here
         this.clientService.createClient(data).subscribe((res: any) => {
           console.log(res);
+          this.snackBar.open('Client created successfully', 'Close', {
+            duration: 4000,
+          });
           this.navigateToClientList();
         });
       } catch (error) {
