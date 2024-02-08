@@ -11,6 +11,8 @@ export class EngagementPageComponent implements OnInit {
 
   allEngagements: Engagement[] = [];
 
+  baseRoute = '/engagement/';
+
   constructor(private engagementService: EngagementService) { }
 
   ngOnInit(): void {
@@ -23,8 +25,15 @@ export class EngagementPageComponent implements OnInit {
       (data: any) => {
         console.log('Engagements: ', data);
         this.allEngagements = data.body;
+        this.formatEngagementData();
       }
     )
+
+  }
+  formatEngagementData(){
+    this.allEngagements.forEach(engagement => {
+      engagement.name = engagement.name.length > 10 ? 'Engagement Id: '+engagement.name.slice(-5) : engagement.name.substring(0, 10);
+    });
   }
   
   // onContractSelected(contract: Contract){

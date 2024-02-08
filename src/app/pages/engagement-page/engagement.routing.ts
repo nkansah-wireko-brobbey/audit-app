@@ -12,7 +12,7 @@ export const engagementRoutes: Routes = [
           component: EngagementPageComponent,
         },
         {
-            path: 'engagement/:contractId',
+            path: 'engagement/:engagementId',
             component: ViewEngagementDetailsComponent,
         },
         // {

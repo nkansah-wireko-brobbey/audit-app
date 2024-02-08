@@ -16,3 +16,48 @@
           </div>
     </mat-card-content>
 </mat-card>
+
+<mat-card class="cardWithShadow">
+    <mat-card-content class="contentWrapper">
+      <mat-card-title>All Engagements</mat-card-title>
+      <div class="spacer"></div> <!-- Add spacer to push button to the end -->
+      <a routerLink="">
+        <button mat-stroked-button
+        color="primary" class="btn btn-primary btn-rounded">
+          Refresh
+        </button>
+      </a>
+    </mat-card-content>
+  </mat-card>
+  <div class="row">
+    <div class="col-sm-6 col-lg-3" *ngFor="let engagement of allEngagements">
+        <a [routerLink]="baseRoute+'/'+engagement.id" style="text-decoration: none; color: black;">
+      <mat-card class="cardWithShadow productcard overflow-hidden">
+          
+          <mat-card-content class="p-b-24 p-t-12 position-relative">
+              <button
+              mat-mini-fab
+              color="primary"
+              class="icon-30 cart-btn"
+              matTooltip="View More"
+              > 
+              <i-tabler name="alert-square-rounded" class="icon-16"></i-tabler>
+            </button>
+            <mat-card-title class="mat-headline-2 f-s-16 m-b-4"> {{
+                engagement.name
+            }}</mat-card-title>
+          <div class="d-flex align-items-center justify-content-between">
+              <div class="d-flex align-items-center">Proposed Start date: 
+                  <span class="f-s-14 m-l-4 "
+                  >{{ engagement.proposedStartDate }}</span
+                  >
+                </div>
+                
+            </div>
+        </mat-card-content>
+    </mat-card>
+</a>
+</div>
+  </div>
+  
+    

@@ -24,4 +24,24 @@ export interface engagmentDetails {
     status: string;
     businessCategoryId: number;
   }
+  export interface EngagementBudget {
+    id: number;
+    travelAndAccommodation: number;
+    insurance: number;
+    softwareLicence: number;
+  }
+
+  export interface EngagementTeamResponse {
+    leadAuditor: StaffResponse;
+    juniorAuditors: StaffResponse[];
+    assistants: StaffResponse[];
+  }
+
+  export interface StaffResponse {
+    firstName: string;
+    lastName: string;
+    email: string;
+  }
+  
+  
   
