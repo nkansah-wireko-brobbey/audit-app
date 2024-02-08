@@ -1,0 +1,52 @@
+<mat-card class="cardWithShadow">
+  <mat-card-content class="contentWrapper">
+    <mat-card-title>Our Contract</mat-card-title>
+    <div class="spacer"></div> <!-- Add spacer to push button to the end -->
+    <a routerLink="/create/contract">
+      <button mat-stroked-button
+      color="primary" class="btn btn-primary btn-rounded">
+        Add New Contract
+      </button>
+    </a>
+  </mat-card-content>
+</mat-card>
+<!-- ============================================================== -->
+<!-- Simple four boxes Row -->
+<!-- ============================================================== -->
+<div class="row">
+    <div class="col-sm-6 col-lg-3" *ngFor="let contract of contractCards">
+      <mat-card class="cardWithShadow productcard overflow-hidden">
+        <a [routerLink]="baseRoute+contract.clientId+'/'+contract.contractId">
+          <img
+            src="{{ contract.imgSrc }}"
+            alt="imgSrc"
+            class="w-100"
+            mat-card-image
+          />
+        </a>
+        <mat-card-content class="p-b-24 p-t-12 position-relative">
+          <button
+            mat-mini-fab
+            color="primary"
+            class="icon-30 cart-btn"
+            matTooltip="View More"
+          > 
+            <i-tabler name="alert-square-rounded" class="icon-16"></i-tabler>
+          </button>
+          <mat-card-title class="mat-headline-2 f-s-16 m-b-4">{{
+            contract.clientName
+          }}</mat-card-title>
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+              <span class="f-s-14 m-l-4 "
+                >${{ contract.title }}</span
+              >
+            </div>
+          
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  
+    

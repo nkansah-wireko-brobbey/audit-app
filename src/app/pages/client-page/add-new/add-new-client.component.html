@@ -1,0 +1,65 @@
+<div class="row container-fluid">
+    <div class="col-lg-12">
+      <mat-card class="cardWithShadow">
+        <mat-card-content>
+          <mat-card-title>Client Onboarding</mat-card-title>
+          <mat-card-subtitle class="mat-body-1">Lets create a client</mat-card-subtitle>
+  
+          <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <mat-label>Client Name</mat-label>
+                  <input matInput formControlName="businessName" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <mat-label>Email</mat-label>
+                  <input matInput formControlName="email" />
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <mat-label>Staff Size</mat-label>
+                  <mat-select formControlName="staffSize">
+                    <mat-option *ngFor="let staff of staffSizes" [value]="staff.id">{{ staff.name }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <mat-label>Business Category</mat-label>
+                  <!-- Replace this with appropriate input type or mat-select -->
+                  <mat-select formControlName="businessCategory">
+                    <mat-option *ngFor="let category of businessCategories" [value]="category.id">{{ category.name }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <mat-label>Phone Number</mat-label>
+                  <input matInput formControlName="phoneNumber" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <mat-label>Country Code</mat-label>
+                  <mat-select formControlName="countryCode">
+                    <mat-option *ngFor="let country of countryList" [value]="country.number">{{ country.name }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <button mat-raised-button color="primary" type="submit">Submit</button>
+          </form>
+          
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  

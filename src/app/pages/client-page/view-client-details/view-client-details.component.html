@@ -1,0 +1,33 @@
+<mat-card class="cardWithShadow" *ngIf="clientDetails">
+    <!-- <div class="card-content">
+      <mat-card-header class="header">
+        <div class="details-container">
+          <div class="business-name">{{ clientDetails.businessName }}</div>
+          <div class="business-category">Business Category: {{ clientDetails.businessCategoryName }}</div>
+        </div>
+      </mat-card-header>
+      <mat-card-content class="content">
+        <div class="details">
+          <p>Email: {{ clientDetails.email }}</p>
+          <p>Phone Number: +{{ clientDetails.phoneNumber.countryCode }} {{ clientDetails.phoneNumber.number }}</p>
+          <p>Staff Size: {{ clientDetails.staffSize }}</p>
+        </div>
+      </mat-card-content>
+    </div> -->
+    
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{ clientDetails.businessName }}</mat-card-title>
+            <mat-card-subtitle>Business Category: {{ clientDetails.businessCategoryName }}</mat-card-subtitle>
+            <img mat-card-sm-image [src]="clientDetails.imgSrc" >
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="details">
+                <p>Email: {{ clientDetails.email }}</p>
+                <p>Phone Number: +{{ clientDetails.phoneNumber.countryCode }} {{ clientDetails.phoneNumber.number }}</p>
+                <p>Staff Size: {{ clientDetails.staffSize }}</p>
+              </div>
+        </mat-card-content>
+  </mat-card>
+  
